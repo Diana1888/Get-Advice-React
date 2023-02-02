@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import icon from "./twitter.png";
 
 function App() {
+  const [advice, setAdvice] = useState('');
+
+  const getActivity = async () => {
+    const response = await fetch(`http://www.boredapi.com/api/activity/`);
+    const data = await response.json();
+    console.log(data);
+    setAdvice(data.activity);
+  };
+
+  useEffect(() => {
+    getActivity();
+  }, []);
+
+  const tweetAdvice =() =>{
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${advice}`;
+    window.open(twitterUrl, "_blank");
+
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className="container">
+      <p>{advice}</p>
+      <div className="btn-container">
+        <button className="btn-tweet" onClick={tweetAdvice}><img src={icon} width="50px"/></button>
+      <button className="btn-click" onClick={getActivity}>New Advice</button>
+      </div>
     </div>
   );
 }
