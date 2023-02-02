@@ -29,7 +29,7 @@ function App() {
     <div className="container">
       <p>{advice}</p>
       <div className="btn-container">
-        <button className="btn-tweet" onClick={tweetAdvice}><img src={icon} width="50px"/></button>
+        <button className="btn-tweet" onClick={tweetAdvice}><img src={icon} width="50px" alt="tweeter-icon"/></button>
       <button className="btn-click" onClick={getActivity}>New Advice</button>
       </div>
     </div>
