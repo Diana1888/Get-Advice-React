@@ -57,9 +57,6 @@ cursor: pointer;
   filter: brightness(150%);
 }
 
-/* .btn-tweet:hover{
-  color: #38a1f3;
-} */
 
 button:active {
   transform: translate(0, 0.3rem);
