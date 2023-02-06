@@ -1,17 +1,17 @@
 import "./App.css";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import icon from "./twitter.png";
 
 function App() {
   const [advice, setAdvice] = useState('');
 
-  const getActivity = async () => {
+  const getActivity = useCallback(async () => {
     const response = await fetch(`https://www.boredapi.com/api/activity/`);
     const data = await response.json();
     console.log(data);
     setAdvice(data.activity);
-  };
+  });
 
   useEffect(() => {
     getActivity();
