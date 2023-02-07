@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
+import { useCallback  } from "react";
 import icon from "./twitter.png";
 
 function App() {
@@ -9,13 +10,12 @@ function App() {
   const getActivity = useCallback(async () => {
     const response = await fetch(`https://www.boredapi.com/api/activity/`);
     const data = await response.json();
-    console.log(data);
     setAdvice(data.activity);
-  });
+  }, []);
 
   useEffect(() => {
     getActivity();
-  }, []);
+  }, [getActivity]);
 
   const tweetAdvice =() =>{
     const twitterUrl = `https://twitter.com/intent/tweet?text=${advice}`;
